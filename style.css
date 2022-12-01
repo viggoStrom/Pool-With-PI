@@ -1,0 +1,56 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    font-family: "Roboto Mono", 'Courier New', Courier, monospace;
+    background-color: #363636;
+    color: white;
+
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    /* justify-content: center; */
+    align-content: center;
+    flex-flow: column nowrap;
+}
+
+#canvasWrapper {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    margin: 0;
+    padding: 0;
+}
+
+canvas {
+    background-color: #252525;
+    height: 45rem;
+    width: 45rem;
+}
+#performanceWrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+#performance {
+    display: flex;
+    flex-flow: row nowrap;
+
+    margin: 0;
+    padding: 0;
+    width: 80%;
+}
+
+.performance {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    color: rgb(185, 185, 185);
+    font-style: italic;
+    font-size: smaller;
+    text-align: start;
+}
