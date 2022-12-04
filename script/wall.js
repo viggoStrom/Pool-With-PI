@@ -2,7 +2,7 @@
 
 
 class wall {
-    constructor(x,y,w,h,color) {
+    constructor(x, y, w, h, color) {
         this.x = x;
         this.y = y;
         this.w = w;
@@ -14,8 +14,8 @@ class wall {
         ctx.beginPath();
         ctx.fillStyle = this.c;
         ctx.strokeStyle = this.c;
-        ctx.fillRect(this.x,this.y,this.w,this.h);
-        ctx.strokeRect(this.x,this.y,this.w,this.h);
+        ctx.fillRect(this.x, this.y, this.w, this.h);
+        ctx.strokeRect(this.x, this.y, this.w, this.h);
         ctx.closePath();
     }
 }
