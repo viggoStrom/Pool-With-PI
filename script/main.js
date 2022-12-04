@@ -14,6 +14,12 @@ canvas.width = "10000";
 canvas.frames = 0;
 canvas.frameTime = 0;
 canvas.perfDiv = document.getElementById("performance");
+canvas.color = {
+    background: "#252525",
+    boundFill: "#cccccc",
+    darkGray: "#363636",
+    boxFill: "#fce5cd"
+};
 
 canvas.perfDisplay = () => {
     //param ...catagoriesShown
@@ -29,23 +35,25 @@ canvas.perfDisplay = () => {
     //         settings[i] = true
     //     }
     // }
-    canvas.perfDiv.children[0].innerText = `frames: ${canvas.frames.toFixed(2)}`;
-    canvas.perfDiv.children[1].innerText = `fps: ${(canvas.frames/(performance.now() - canvas.timeAtStart)*1000).toFixed(2)}`;
+    canvas.perfDiv.children[0].innerText = `frames: ${canvas.frames.toFixed(1)}`;
+    canvas.perfDiv.children[1].innerText = `fps: ${(canvas.frames / (performance.now() - canvas.timeAtStart) * 1000).toFixed(2)}`;
     canvas.perfDiv.children[2].innerText = `frametime: ${(canvas.frameTime).toFixed(2)}`;
     canvas.perfDiv.children[3].innerText = `time: ${(performance.now() - canvas.timeAtStart).toFixed(2)} ms`;
 }
 
-const floor = new hardBound(0, 900, canvas.width, canvas.height-900, "rgb(216, 216, 216)");
-
+const floor = new bound(0, 850, canvas.width, canvas.height - 850, canvas.color.boundFill, canvas.color.darkGray);
+const wall = new bound(0, 0, 800, canvas.height, canvas.color.boundFill, canvas.color.darkGray);
 
 const draw = () => {
     canvas.frameTime = performance.now(); // frametime tracking
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // clears canvas
 
     // draw each element
-    floor.draw();
+    wall.update();
+    floor.update();
 
-    
+
     // debug stuff
     canvas.frames++;
     canvas.frameTime = performance.now() - canvas.frameTime; // frametime tracking
@@ -53,9 +61,11 @@ const draw = () => {
 }
 
 const initiate = () => {
-    if(hasTheProgramStarted){
+    if (hasTheProgramStarted) {
         canvas.timeAtStart = performance.now();
-        setInterval(draw, 16.66666666666);
-        hasTheProgramStarted = false
+        setInterval(draw, 10); // 10 ms since it's the lowest value setInterval accepts (fps should be around 100)
+        hasTheProgramStarted = false;
     }
 }
+
+initiate();
