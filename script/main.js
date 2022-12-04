@@ -1,18 +1,16 @@
-console.clear();
-var bool = true
-
 // helps intellisense to autocomplete canvas api calls
 /** @type {HTMLCanvasElement} */
 
-// finds canvas element and defines a context in which things can be rendered
+// finds canvas element and defines a context in which things are rendered
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 // set up variables
+var hasTheProgramStarted = true
 canvas.height = "1000";
-canvas.width = "1000";
+canvas.width = "10000";
 canvas.frames = 0;
 canvas.frameTime = 0;
 canvas.perfDiv = document.getElementById("performance");
@@ -37,7 +35,7 @@ canvas.perfDisplay = () => {
     canvas.perfDiv.children[3].innerText = `time: ${(performance.now() - canvas.timeAtStart).toFixed(2)} ms`;
 }
 
-const mainWall = new wall(200, 700, 600, 100, "#aaaaaa");
+const floor = new hardBound(0, 900, canvas.width, canvas.height-900, "rgb(216, 216, 216)");
 
 
 const draw = () => {
@@ -45,7 +43,7 @@ const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // draw each element
-    mainWall.draw();
+    floor.draw();
 
     
     // debug stuff
@@ -55,9 +53,9 @@ const draw = () => {
 }
 
 const initiate = () => {
-    if(bool){
+    if(hasTheProgramStarted){
         canvas.timeAtStart = performance.now();
         setInterval(draw, 16.66666666666);
-        bool = false
+        hasTheProgramStarted = false
     }
 }
