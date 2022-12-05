@@ -14,7 +14,7 @@ canvas.width = "1500";
 canvas.frames = 0;
 canvas.frameTime = 0;
 canvas.perfDiv = document.getElementById("performance");
-canvas.nrOfCollisions = 0
+canvas.nrOfCollisions = -1
 canvas.color = {
     background: "#252525",
     boundFill: "#cccccc",
@@ -26,9 +26,9 @@ canvas.color = {
 const floor = new bound(0, 850, canvas.width, canvas.height - 850, canvas.color.boundFill, canvas.color.darkGray);
 const wall = new bound(0, 0, 250, canvas.height, canvas.color.boundFill, canvas.color.darkGray);
 const box1 = new box(500, 750, 100, 0, 10, canvas.color.boxFill, canvas.color.vector)
-const box2 = new box(1200, 650, 200, -2, 1000, canvas.color.boxFill, canvas.color.vector)
+const box2 = new box(1200, 650, 200, -4, 1000, canvas.color.boxFill, canvas.color.vector)
 const collisionCheckBox1And2 = new collideTwoBodies(box1, box2, canvas)
-const collisionCheckBox1AndWall = new collideTwoBodies(box1, wall, canvas)
+const collisionCheckBox1AndWall = new collideTwoBodies(wall, box1, canvas)
 
 canvas.perfDisplay = () => {
     canvas.perfDiv.children[0].innerText = `frames: ${canvas.frames.toFixed(1)}`;
@@ -53,15 +53,6 @@ const draw = () => {
 
     // debug stuff
     canvas.perfDisplay();
-
-    // for (let index = 10; index < 150; index += 10) {
-    //     ctx.moveTo(index, 845)
-    //     ctx.strokeStyle = canvas.color.darkGray
-    //     ctx.lineWidth = 2
-    //     ctx.beginPath()
-    //     ctx.lineTo(index, 855)
-    //     ctx.stroke()
-    // }
 }
 
 draw()
@@ -74,4 +65,4 @@ const initiate = () => {
     }
 }
 
-initiate();
+// initiate();

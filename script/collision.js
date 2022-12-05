@@ -12,22 +12,20 @@ class collideTwoBodies {
     }
 
     checkCollision = () => {
-        if (this.body2 instanceof bound) {
-            if (this.body1.xPosition < this.body2.xPosition + this.body2.width) {
-                this.body1.xVelocity *= -1
-            }
+        if (this.body1 instanceof bound && this.body2.xPosition < this.body1.xPosition + this.body1.width) {
+            this.body2.xVelocity *= -1
         }
-        else if (this.body1 instanceof bound) {
-            if (this.body2.xPosition < this.body1.xPosition + this.body1.width) {
-                this.body2.xVelocity *= -1
-            }
-        }
-        else {
-            if (this.body1.xPosition + this.body1.width > this.body2.xPosition) {
-                this.body1.xVelocity = ((this.m1 - this.m2) / (this.m1 + this.m2)) * this.u1 + ((2 * this.m2) / (this.m1 + this.m2)) * this.u2
-                this.body2.xVelocity = ((2 * this.m1) / (this.m1 + this.m2)) * this.u1 + ((this.m2 - this.m1) / (this.m1 + this.m2)) * this.u2
-                this.canvas.nrOfCollisions++
-            }
+        else if (this.body1.xPosition + this.body1.width > this.body2.xPosition) {
+            // Calculate the final velocities of the colliding objects using the equations of motion for an elastic collision
+            const v1Prime = (this.m1 - this.m2) / (this.m1 + this.m2) * this.u1 + (2 * this.m2) / (this.m1 + this.m2) * this.u2;
+            const v2Prime = (this.m2 - this.m1) / (this.m1 + this.m2) * this.u2 + (2 * this.m1) / (this.m1 + this.m2) * this.u1;
+
+            // Update the x-velocities of the colliding objects using the calculated final velocities
+            this.body1.xVelocity = v1Prime;
+            this.body2.xVelocity = v2Prime;
+
+            // Increment the number of collisions that have occurred
+            this.canvas.nrOfCollisions++;
         }
     }
 
