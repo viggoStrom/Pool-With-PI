@@ -17,7 +17,6 @@ class bound {
         ctx.strokeStyle = this.strokeColor;
         ctx.fillRect(this.xPosition, this.yPosition, this.width, this.height);
         ctx.strokeRect(this.xPosition, this.yPosition, this.width, this.height);
-        ctx.closePath();
     }
 
     update = () => {

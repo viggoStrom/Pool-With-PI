@@ -10,7 +10,7 @@ ctx.clearRect(0, 0, canvas.width, canvas.height);
 // set up variables
 canvas.hasTheProgramStarted = true
 canvas.height = "1000";
-canvas.width = "17777";
+canvas.width = "1777";
 canvas.frames = 0;
 canvas.frameTime = 0;
 canvas.perfDiv = document.getElementById("performance");
@@ -19,7 +19,7 @@ canvas.color = {
     boundFill: "#cccccc",
     darkGray: "#363636",
     boxFill: "#fce5cd",
-    vector: "#720e10"
+    vector: "#d6060b"
 };
 
 canvas.perfDisplay = () => {
@@ -45,8 +45,9 @@ canvas.perfDisplay = () => {
 }
 
 const floor = new bound(0, 850, canvas.width, canvas.height - 850, canvas.color.boundFill, canvas.color.darkGray);
-const wall = new bound(0, 0, 800, canvas.height, canvas.color.boundFill, canvas.color.darkGray);
-const box1 = new box(1000, 700, 100, canvas.color.boxFill, canvas.color.darkGray, -100, canvas.color.vector)
+const wall = new bound(0, 0, 250, canvas.height, canvas.color.boundFill, canvas.color.darkGray);
+const box1 = new box(500, 750, 100, 0, 1000, canvas.color.boxFill, canvas.color.darkGray, canvas.color.vector)
+const box2 = new box(1400, 650, 200, -5, 1000, canvas.color.boxFill, canvas.color.darkGray, canvas.color.vector)
 
 const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // clears canvas
@@ -55,17 +56,23 @@ const draw = () => {
     wall.update();
     floor.update();
     box1.update();
+    box2.update();
 
     // debug stuff
     canvas.perfDisplay();
+    // window.requestAnimationFrame(draw)
 }
+
+draw()
 
 const initiate = () => {
     if (canvas.hasTheProgramStarted) {
         canvas.timeAtStart = performance.now();
-        setInterval(draw, 20); // 10 ms since it's the lowest value setInterval accepts (fps should be around 100)
+        setInterval(draw, 10); // 10 ms since it's the lowest value setInterval accepts (fps should be around 100)
         canvas.hasTheProgramStarted = false;
     }
 }
 
 initiate();
+
+// window.requestAnimationFrame(draw)
