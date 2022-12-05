@@ -10,10 +10,11 @@ ctx.clearRect(0, 0, canvas.width, canvas.height);
 // set up variables
 canvas.hasTheProgramStarted = true
 canvas.height = "1000";
-canvas.width = "1777";
+canvas.width = "1500";
 canvas.frames = 0;
 canvas.frameTime = 0;
 canvas.perfDiv = document.getElementById("performance");
+canvas.nrOfCollisions = 0
 canvas.color = {
     background: "#252525",
     boundFill: "#cccccc",
@@ -46,8 +47,9 @@ canvas.perfDisplay = () => {
 
 const floor = new bound(0, 850, canvas.width, canvas.height - 850, canvas.color.boundFill, canvas.color.darkGray);
 const wall = new bound(0, 0, 250, canvas.height, canvas.color.boundFill, canvas.color.darkGray);
-const box1 = new box(500, 750, 100, 0, 1000, canvas.color.boxFill, canvas.color.darkGray, canvas.color.vector)
-const box2 = new box(1400, 650, 200, -5, 1000, canvas.color.boxFill, canvas.color.darkGray, canvas.color.vector)
+const box1 = new box(500, 750, 100, 0, 10, canvas.color.boxFill, canvas.color.vector)
+const box2 = new box(1200, 650, 200, -5, 1000, canvas.color.boxFill, canvas.color.vector)
+const collisionCheckBox1And2 = new collideTwoBodies(box1, box2)
 
 const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // clears canvas
@@ -57,10 +59,19 @@ const draw = () => {
     floor.update();
     box1.update();
     box2.update();
+    collisionCheckBox1And2.update()
 
     // debug stuff
     canvas.perfDisplay();
-    // window.requestAnimationFrame(draw)
+
+    for (let index = 10; index < 150; index += 10) {
+        ctx.moveTo(index, 845)
+        ctx.strokeStyle = canvas.color.darkGray
+        ctx.lineWidth = 2
+        ctx.beginPath()
+        ctx.lineTo(index, 855)
+        ctx.stroke()
+    }
 }
 
 draw()
@@ -74,5 +85,3 @@ const initiate = () => {
 }
 
 initiate();
-
-// window.requestAnimationFrame(draw)
