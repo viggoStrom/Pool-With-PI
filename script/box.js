@@ -34,8 +34,8 @@ class box {
     text = () => {
         ctx.fillStyle = "white"
         ctx.font = "30px roboto mono"
-        ctx.fillText(`${this.mass} kg`, this.xPosition, this.yPosition-30, this.width * 10)
-        ctx.fillText(`${this.xVelocity} m/s`, this.xPosition, this.yPosition-70, this.width * 10)
+        ctx.fillText(`${this.mass.toFixed(2)} kg`, this.xPosition, this.yPosition-30, this.width * 10)
+        ctx.fillText(`${this.xVelocity.toFixed(2)} m/s`, this.xPosition, this.yPosition-70, this.width * 10)
     }
 
     update = () => {

@@ -23,33 +23,22 @@ canvas.color = {
     vector: "#d6060b"
 };
 
+const floor = new bound(0, 850, canvas.width, canvas.height - 850, canvas.color.boundFill, canvas.color.darkGray);
+const wall = new bound(0, 0, 250, canvas.height, canvas.color.boundFill, canvas.color.darkGray);
+const box1 = new box(500, 750, 100, 0, 10, canvas.color.boxFill, canvas.color.vector)
+const box2 = new box(1200, 650, 200, -2, 1000, canvas.color.boxFill, canvas.color.vector)
+const collisionCheckBox1And2 = new collideTwoBodies(box1, box2, canvas)
+const collisionCheckBox1AndWall = new collideTwoBodies(box1, wall, canvas)
+
 canvas.perfDisplay = () => {
-    //param ...catagoriesShown
-    //what should be displayed? frames: boolean, fps: boolean, framtime: boolean, time: boolean
-    // var settings = {
-    //     frames: false,
-    //     fps: false,
-    //     frametime: false,
-    //     time: false
-    // }
-    // for (let i = 0; i < catagoriesShown.length; i++) {
-    //     if (catagoriesShown[i]) {
-    //         settings[i] = true
-    //     }
-    // }
     canvas.perfDiv.children[0].innerText = `frames: ${canvas.frames.toFixed(1)}`;
     canvas.perfDiv.children[1].innerText = `fps: ${(canvas.frames / (performance.now() - canvas.timeAtStart) * 1000).toFixed(2)}`;
     canvas.perfDiv.children[2].innerText = `frametime: ${(performance.now() - canvas.frameTime).toFixed(2)}`;
     canvas.perfDiv.children[3].innerText = `time: ${(performance.now() - canvas.timeAtStart).toFixed(2)} ms`;
+    canvas.perfDiv.children[4].innerText = `collisions: ${canvas.nrOfCollisions}`;
     canvas.frameTime = performance.now()
     canvas.frames++;
 }
-
-const floor = new bound(0, 850, canvas.width, canvas.height - 850, canvas.color.boundFill, canvas.color.darkGray);
-const wall = new bound(0, 0, 250, canvas.height, canvas.color.boundFill, canvas.color.darkGray);
-const box1 = new box(500, 750, 100, 0, 10, canvas.color.boxFill, canvas.color.vector)
-const box2 = new box(1200, 650, 200, -5, 1000, canvas.color.boxFill, canvas.color.vector)
-const collisionCheckBox1And2 = new collideTwoBodies(box1, box2)
 
 const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // clears canvas
@@ -60,18 +49,19 @@ const draw = () => {
     box1.update();
     box2.update();
     collisionCheckBox1And2.update()
+    collisionCheckBox1AndWall.update()
 
     // debug stuff
     canvas.perfDisplay();
 
-    for (let index = 10; index < 150; index += 10) {
-        ctx.moveTo(index, 845)
-        ctx.strokeStyle = canvas.color.darkGray
-        ctx.lineWidth = 2
-        ctx.beginPath()
-        ctx.lineTo(index, 855)
-        ctx.stroke()
-    }
+    // for (let index = 10; index < 150; index += 10) {
+    //     ctx.moveTo(index, 845)
+    //     ctx.strokeStyle = canvas.color.darkGray
+    //     ctx.lineWidth = 2
+    //     ctx.beginPath()
+    //     ctx.lineTo(index, 855)
+    //     ctx.stroke()
+    // }
 }
 
 draw()
