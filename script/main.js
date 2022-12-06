@@ -7,7 +7,6 @@ const ctx = canvas.getContext("2d");
 
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-
 // set up variables
 canvas.hasTheProgramStarted = true
 canvas.height = "1000";
@@ -27,8 +26,8 @@ canvas.color = {
 // declare all of my objects
 const floor = new bound(0, 850, canvas.width, canvas.height - 850, canvas.color.boundFill, canvas.color.darkGray);
 const wall = new bound(0, 0, 250, canvas.height, canvas.color.boundFill, canvas.color.darkGray);
-const box1 = new box(500, 750, 100, -2, 10, canvas.color.boxFill, canvas.color.vector)
-const box2 = new box(1200, 650, 200, -1, 1000, canvas.color.boxFill, canvas.color.vector)
+const box1 = new box(500, 750, 100, 0, 10, canvas.color.boxFill, canvas.color.vector)
+const box2 = new box(1200, 650, 200, -3, 1000, canvas.color.boxFill, canvas.color.vector)
 const collisionCheckBox1And2 = new collideTwoBodies(box1, box2, canvas)
 const collisionCheckBox1AndWall = new collideTwoBodies(wall, box1, canvas)
 
