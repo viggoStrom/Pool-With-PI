@@ -30,7 +30,7 @@ class box {
     }
 
     createHtmlInput = () => {
-
+        
     }
 
     update = () => {
