@@ -11,9 +11,9 @@ ctx.clearRect(0, 0, canvas.width, canvas.height);
 canvas.hasTheProgramStarted = true
 canvas.height = "1000";
 canvas.width = "1500";
+canvas.perfDiv = document.getElementById("performance");
 canvas.frames = 0;
 canvas.frameTime = 0;
-canvas.perfDiv = document.getElementById("performance");
 canvas.nrOfCollisions = 0
 canvas.color = {
     background: "#252525",
@@ -23,26 +23,38 @@ canvas.color = {
     vector: "#d6060b"
 };
 
-// declare all of my objects
+
+// declare all of my objects (with default values that will be changed)
 const floor = new bound(0, 850, canvas.width, canvas.height - 850, canvas.color.boundFill, canvas.color.darkGray);
 const wall = new bound(0, 0, 250, canvas.height, canvas.color.boundFill, canvas.color.darkGray);
-const box1 = new box(600, 750, 100, 0, 10, canvas.color.boxFill, canvas.color.vector)
-const box2 = new box(1000, 650, 200, -10, 10_000_000, canvas.color.boxFill, canvas.color.vector)
+const box1 = new box(600, 750, 100, 0, 1, canvas.color.boxFill, canvas.color.vector)
+const box2 = new box(1000, 650, 200, -2, 100, canvas.color.boxFill, canvas.color.vector)
 const collider = new collide(box1, box2, wall, canvas)
 
 
 canvas.perfDisplay = () => {
-    canvas.perfDiv.children[0].innerText = `frames: ${canvas.frames.toFixed(1)}`;
-    canvas.perfDiv.children[1].innerText = `fps: ${(canvas.frames / (performance.now() - canvas.timeAtStart) * 1000).toFixed(2)}`;
-    canvas.perfDiv.children[2].innerText = `frametime: ${(performance.now() - canvas.frameTime).toFixed(2)}`;
-    canvas.perfDiv.children[3].innerText = `time: ${(performance.now() - canvas.timeAtStart).toFixed(2)} ms`;
-    canvas.perfDiv.children[4].innerText = `collisions: ${canvas.nrOfCollisions}`;
+    const frames = canvas.frames.toFixed(1)
+    const fps = (canvas.frames / (performance.now() - canvas.timeAtStart) * 1000).toFixed(2)
+    const frametime = (performance.now() - canvas.frameTime).toFixed(2)
+    const time = (performance.now() - canvas.timeAtStart).toFixed(2)
+    const collisions = canvas.nrOfCollisions
+
+    canvas.perfDiv.children[0].innerText = `frames: ${frames}`;
+    canvas.perfDiv.children[1].innerText = `fps: ${fps}`;
+    canvas.perfDiv.children[2].innerText = `frametime: ${frametime} ms`;
+    canvas.perfDiv.children[3].innerText = `time: ${time} ms`;
+    canvas.perfDiv.children[4].innerText = `collisions: ${collisions}`;
     canvas.frameTime = performance.now()
     canvas.frames++;
 }
 
+const fetchDataFromHtml = () => {
+
+}
+
 const draw = () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // clears canvas
+    // clears canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // draw each element
     wall.update();
@@ -51,11 +63,18 @@ const draw = () => {
     box2.update();
     collider.update()
 
-    // debug stuff
+    // displays some stats about the simulation
     canvas.perfDisplay();
 }
 
-draw()
+// shows text in the middle of the screen with instructions
+const instructions = () => {
+    ctx.fillStyle = "#363636"
+    ctx.fillRect(canvas.width / 20, canvas.height / 2 - 60, canvas.width * 18 / 20, 90)
+    ctx.font = "50px roboto mono"
+    ctx.fillStyle = "white"
+    ctx.fillText("Press 'space' or simply click on the screen", canvas.width / 15, canvas.height / 2)
+}
 
 const initiate = () => {
     if (canvas.hasTheProgramStarted) {
@@ -65,4 +84,13 @@ const initiate = () => {
     }
 }
 
-// initiate();
+document.addEventListener('keydown', function (event) {
+    if (event.keyCode === 32) {
+        initiate()
+    }
+});
+
+// prerenders one frame before starting so you get visual feedback that it's working
+draw()
+// instructions here because they only get displayed once before actually starting gthe simulation
+instructions()
