@@ -8,25 +8,29 @@ class collide {
         this.canvas = canvas
         this.m1 = this.box1.mass
         this.m2 = this.box2.mass
-        // initial velocities
-        this.u1 = this.box1.xVelocity
-        this.u2 = this.box2.xVelocity
     }
 
     check = () => {
+        // Check for collisions between the first box and the wall
         if (this.box1.xPosition < this.wall.xPosition + this.wall.width) {
-            this.box1.xVelocity *= -1
+            if (this.box1.xVelocity < 0) {
+                this.box1.xVelocity *= -1
+                this.canvas.nrOfCollisions++
+            }
+
         }
+
+        // Check for collisions between the second box and the wall
+        if (this.box2.xPosition < this.wall.xPosition + this.wall.width) {
+            this.box2.xVelocity *= -1
+
+            this.canvas.nrOfCollisions++
+        }
+
         if (this.box1.xPosition + this.box1.width > this.box2.xPosition) {
             // Calculate the final velocities of the colliding objects using the equations of motion for an elastic collision
-            const v1 = (this.u1 * (this.m1 - this.m2) + 2 * this.m2 * this.u2) / (this.m1 + this.m2)
-            const v2 = (this.u2 * (this.m2 - this.m1) + 2 * this.m1 * this.u1) / (this.m1 + this.m2)
-
-            // const v1 = (this.m2 * (this.u2 - this.u1) + this.m1 * this.u1 + this.m2 * this.u2) / (this.m1 + this.m2)
-            // const v2 = (this.m1 * (this.u1 - this.u2) + this.m1 * this.u1 + this.m2 * this.u2) / (this.m1 + this.m2)
-
-            // const v1 = ((this.m1 - this.m2) / (this.m1 + this.m2)) * this.u1 + ((2 * this.m2) / (this.m1 + this.m2)) * this.u2
-            // const v2 = ((this.m2 - this.m1) / (this.m1 + this.m2)) * this.u1 + ((2 * this.m1) / (this.m1 + this.m2)) * this.u2
+            const v1 = (this.box1.xVelocity * (this.m1 - this.m2) + 2 * this.m2 * this.box2.xVelocity) / (this.m1 + this.m2)
+            const v2 = (this.box2.xVelocity * (this.m2 - this.m1) + 2 * this.m1 * this.box1.xVelocity) / (this.m1 + this.m2)
 
             // Update the x-velocities of the colliding objects using the calculated final velocities
             this.box1.xVelocity = v1;
