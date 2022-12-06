@@ -14,7 +14,7 @@ canvas.width = "1500";
 canvas.frames = 0;
 canvas.frameTime = 0;
 canvas.perfDiv = document.getElementById("performance");
-canvas.nrOfCollisions = -1
+canvas.nrOfCollisions = 0
 canvas.color = {
     background: "#252525",
     boundFill: "#cccccc",
@@ -28,8 +28,7 @@ const floor = new bound(0, 850, canvas.width, canvas.height - 850, canvas.color.
 const wall = new bound(0, 0, 250, canvas.height, canvas.color.boundFill, canvas.color.darkGray);
 const box1 = new box(500, 750, 100, 0, 10, canvas.color.boxFill, canvas.color.vector)
 const box2 = new box(1200, 650, 200, -3, 1000, canvas.color.boxFill, canvas.color.vector)
-const collisionCheckBox1And2 = new collideTwoBodies(box1, box2, canvas)
-const collisionCheckBox1AndWall = new collideTwoBodies(wall, box1, canvas)
+const collider = new collide(box1, box2, wall, canvas)
 
 
 canvas.perfDisplay = () => {
@@ -44,14 +43,13 @@ canvas.perfDisplay = () => {
 
 const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // clears canvas
-    
+
     // draw each element
     wall.update();
     floor.update();
     box1.update();
     box2.update();
-    collisionCheckBox1And2.update()
-    collisionCheckBox1AndWall.update()
+    collider.update()
 
     // debug stuff
     canvas.perfDisplay();

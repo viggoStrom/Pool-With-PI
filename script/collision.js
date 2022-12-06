@@ -59,11 +59,11 @@ class collide {
         this.box2 = box2
         this.wall = wall
         this.canvas = canvas
-        this.m1 = box1.mass
-        this.m2 = box2.mass
+        this.m1 = this.box1.mass
+        this.m2 = this.box2.mass
         // initial velocities
-        this.u1 = box1.xVelocity 
-        this.u2 = box2.xVelocity
+        this.u1 = this.box1.xVelocity 
+        this.u2 = this.box2.xVelocity
     }
 
     check = () => {
@@ -71,16 +71,15 @@ class collide {
             // Calculate the final velocities of the colliding objects using the equations of motion for an elastic collision
             const v1Prime = (this.m1 - this.m2) / (this.m1 + this.m2) * this.u1 + (2 * this.m2) / (this.m1 + this.m2) * this.u2;
             const v2Prime = (this.m2 - this.m1) / (this.m1 + this.m2) * this.u2 + (2 * this.m1) / (this.m1 + this.m2) * this.u1;
-
             // Update the x-velocities of the colliding objects using the calculated final velocities
-            this.body1.xVelocity = v1Prime;
-            this.body2.xVelocity = v2Prime;
+            this.box1.xVelocity = v1Prime;
+            this.box2.xVelocity = v2Prime;
             
             this.canvas.nrOfCollisions++
         }
     }
 
     update = () => {
-
+        this.check()
     }
 }
