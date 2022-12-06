@@ -16,11 +16,13 @@ body {
 
 #canvasWrapper {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-content: center;
 
     margin: 0;
     padding: 0;
+
+    width: 98%;
 }
 
 canvas {
@@ -28,6 +30,7 @@ canvas {
     height: 45rem;
     aspect-ratio: 1.5/1;
 }
+
 #performanceWrapper {
     display: flex;
     flex-flow: row nowrap;
@@ -51,4 +54,19 @@ canvas {
     font-style: italic;
     font-size: smaller;
     text-align: start;
+}
+
+#userInputWrapper {
+    margin: 1rem 1rem 1rem 3rem;
+}
+
+.inputField {
+    padding: 0rem;
+    margin: 0rem;
+    border-radius: .3rem;
+    width: 4rem;
+}
+
+.inputGroup {
+    margin: 2rem .1rem .1rem .5rem;
 }
