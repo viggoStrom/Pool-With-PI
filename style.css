@@ -65,6 +65,10 @@ canvas {
     margin: 0rem;
     border-radius: .3rem;
     width: 4rem;
+
+    text-align: center;
+    background-color: #252525;
+    color: white;
 }
 
 .inputGroup {

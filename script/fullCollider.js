@@ -12,15 +12,14 @@ class collide {
 
     check = () => {
         // Check for collisions between the first box and the wall
-        if (this.box1.xPosition < this.wall.xPosition + this.wall.width) {
+        if (this.box1.xPosition < this.wall.xPosition + this.wall.width && this.box1.xPosition < this.wall.xPosition + this.wall.width) {
             if (this.box1.xVelocity < 0) {
                 this.box1.xVelocity *= -1
                 this.canvas.nrOfCollisions++
             }
-
         }
 
-        // Check for collisions between the second box and the wall
+        // Check for collisions between the second box and the wall (should not trigger but its a failsafe so things dont phase through matter)
         if (this.box2.xPosition < this.wall.xPosition + this.wall.width) {
             this.box2.xVelocity *= -1
 
@@ -34,7 +33,9 @@ class collide {
 
             // Update the x-velocities of the colliding objects using the calculated final velocities
             this.box1.xVelocity = v1;
+            this.box1.velocityInput.value = v1.toFixed(2);
             this.box2.xVelocity = v2;
+            this.box2.velocityInput.value = v2.toFixed(2);
 
             this.canvas.nrOfCollisions++
         }

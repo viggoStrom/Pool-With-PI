@@ -26,8 +26,11 @@ canvas.color = {
 const floor = new bound(0, 850, canvas.width, canvas.height - 850, canvas.color.boundFill, canvas.color.darkGray);
 const wall = new bound(0, 0, 250, canvas.height, canvas.color.boundFill, canvas.color.darkGray);
 const box1 = new box(600, 750, 100, 0, 1, canvas.color.boxFill, canvas.color.vector);
-const box2 = new box(1000, 650, 200, -2, 100, canvas.color.boxFill, canvas.color.vector);
+const box2 = new box(1000, 650, 200, 2, 100, canvas.color.boxFill, canvas.color.vector);
 const collider = new collide(box1, box2, wall, canvas);
+
+box1.createInputGroup("Little Box")
+box2.createInputGroup("Bigger Box")
 
 // Displays some stats about the simulation
 canvas.perfDisplay = () => {
@@ -47,9 +50,9 @@ canvas.perfDisplay = () => {
   canvas.frames++;
 }
 
-// Fetches data from the HTML
-const fetchDataFromHtml = () => {
-  // Might do this through each object separately
+const getUserInput = () => {
+  box1.getUserInput()
+  box2.getUserInput()
 }
 
 const draw = () => {
@@ -80,7 +83,11 @@ const instructions = () => {
 const initiate = () => {
   if (canvas.hasTheProgramStarted) {
     canvas.timeAtStart = performance.now();
+
+    getUserInput()
+
     setInterval(draw, 10); // 10 ms since it's the lowest value setInterval accepts (fps should be around 100)
+
     canvas.hasTheProgramStarted = false;
   }
 }
@@ -90,10 +97,6 @@ document.addEventListener('keydown', function (event) {
   if (event.keyCode === 32) {
     initiate();
   }
-});
-
-document.addEventListener('click', function () {
-  initiate();
 });
 
 draw();
