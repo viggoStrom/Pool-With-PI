@@ -7,15 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pool With π</title>
     <link rel="stylesheet" href="style.css">
+    <!-- imports "roboto mono" from the google font api -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <!-- i use wrappers for flex alignment so thats why they're there -->
     <div id="canvasWrapper">
         <div id="userInputWrapper">
         </div>
+        <!-- this onclick simply starts the main loop of the simulation -->
         <canvas id="canvas" onclick="initiate()"></canvas>
     </div>
 
@@ -29,6 +32,7 @@
         </div>
     </div>
 
+    <!-- links to all of the scripts I use -->
     <script src="script/fullCollider.js"></script>
     <script src="script/bound.js"></script>
     <script src="script/box.js"></script>

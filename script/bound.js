@@ -1,5 +1,6 @@
 /** @type {HTMLCanvasElement} */
 
+// this really doesnt do much but the collider interacts with this thing later
 class bound {
     constructor(xPosition, yPosition, width, height, fillColor, strokeColor) {
         this.xPosition = xPosition;
@@ -10,6 +11,7 @@ class bound {
         this.strokeColor = strokeColor;
     }
 
+    // creates a simple rectangle
     draw = () => {
         ctx.beginPath();
         ctx.lineWidth = .5

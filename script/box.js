@@ -10,7 +10,7 @@ class box {
         this.vectorColor = vectorColor
         this.mass = mass
     }
-
+    
     rectangle = () => {
         ctx.beginPath();
         ctx.lineWidth = .5
@@ -22,7 +22,7 @@ class box {
         this.xPosition += this.xVelocity
     }
 
-    text = () => {
+    floatingText = () => {
         ctx.fillStyle = "white"
         ctx.font = "30px roboto mono"
         ctx.fillText(`${this.mass.toFixed(2)} kg`, this.xPosition, this.yPosition - 30, this.width * 10)
@@ -120,6 +120,6 @@ class box {
     update = () => {
         this.applyVelocity()
         this.rectangle();
-        this.text();
+        this.floatingText();
     }
 }

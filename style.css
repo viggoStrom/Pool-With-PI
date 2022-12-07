@@ -1,4 +1,5 @@
 ::-webkit-scrollbar {
+    /* I dont like the scrollbar */
     display: none;
 }
 
@@ -27,7 +28,9 @@ body {
 
 canvas {
     background-color: #252525;
-    height: 45rem;
+    height: 42rem;
+    /* having a fixed aspect ratio is usefull for keeping the canvas pixels in line */
+    /* as long as i know the aspect ratio i can define my canvas' height and width so that they arent stretched */
     aspect-ratio: 1.5/1;
 }
 
@@ -48,8 +51,10 @@ canvas {
 
 .performance {
     flex: 1;
+
     margin: 0;
     padding: 0;
+
     color: rgb(185, 185, 185);
     font-style: italic;
     font-size: smaller;

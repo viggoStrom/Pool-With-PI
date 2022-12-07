@@ -29,6 +29,8 @@ const box1 = new box(600, 750, 100, 0, 1, canvas.color.boxFill, canvas.color.vec
 const box2 = new box(1000, 650, 200, 2, 100, canvas.color.boxFill, canvas.color.vector);
 const collider = new collide(box1, box2, wall, canvas);
 
+
+// creates the information that is shown on the side of the canvas
 box1.createInputGroup("Little Box")
 box2.createInputGroup("Bigger Box")
 
@@ -40,26 +42,31 @@ canvas.perfDisplay = () => {
   const time = (performance.now() - canvas.timeAtStart).toFixed(2);
   const collisions = canvas.nrOfCollisions;
 
+  // changes the values of the text under the canvas to reflect current stats
   canvas.perfDiv.children[0].innerText = `frames: ${frames}`;
   canvas.perfDiv.children[1].innerText = `fps: ${fps}`;
   canvas.perfDiv.children[2].innerText = `frametime: ${frametime} ms`;
   canvas.perfDiv.children[3].innerText = `time: ${time} ms`;
   canvas.perfDiv.children[4].innerText = `collisions: ${collisions}`;
 
+  // these are used to calculate frametimes, total frames ellapsed, and fps
   canvas.frameTime = performance.now();
   canvas.frames++;
 }
 
+// consolidated function that updates the boxes masses and velocities to those which are entered in the UI 
 const getUserInput = () => {
   box1.getUserInput()
   box2.getUserInput()
 }
 
-const draw = () => {
+
+// the main loop which handles drawing every frame
+const frame = () => {
   // Clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Draw each element
+  // Draw/update each element
   wall.update();
   floor.update();
   box1.update();
@@ -79,25 +86,32 @@ const instructions = () => {
   ctx.fillText("Press 'space' or simply click on the screen", canvas.width / 15, canvas.height / 2);
 }
 
-// Starts the game, but with a check for if it's already on
+// starts the game and makes sure it's not already running
 const initiate = () => {
+  // simple boolean that checks wether it's already running or not
   if (canvas.hasTheProgramStarted) {
     canvas.timeAtStart = performance.now();
 
+    // calls this once so that those values are correct for the simulation
     getUserInput()
 
-    setInterval(draw, 10); // 10 ms since it's the lowest value setInterval accepts (fps should be around 100)
+    // this function calls "frame()" every 10ms
+    // 10 ms since it's the lowest value setInterval accepts (fps should be around 100)
+    setInterval(frame, 10); 
 
     canvas.hasTheProgramStarted = false;
   }
 }
 
-// Start the game when the space key is pressed or when the screen is clicked
+// Start the game when the space key is pressed
 document.addEventListener('keydown', function (event) {
+  // i choose to ignore this warning
   if (event.keyCode === 32) {
     initiate();
   }
 });
 
-draw();
+// draws one frame so you get visual feedback that it's working 
+frame();
+// draws the instructions once which gets cleared after the main loop starts
 instructions();
