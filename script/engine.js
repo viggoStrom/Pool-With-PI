@@ -2,18 +2,18 @@
 
 
 class engine {
-    constructor(canvas, ...objects) {
+    constructor(canvas, ...objectsThatWillCollide) {
         this.canvas = canvas
-        this.objects = objects
+        this.objects = objectsThatWillCollide
     }
 
-    addVelocity = () => {
-        this.objects.forEach(object => {
-            object
+    addVelocities = () => {
+        this.objects.forEach(element => {
+            element.objects.xPosition -= element.objects.xVelocity
         });
     }
 
     update = () => {
-
+        this.addVelocities
     }
 }
