@@ -1,19 +1,17 @@
 /** @type {HTMLCanvasElement} */
 
 
-
 class bounds {
-    constructor(canvas) {
-        this.canvas = canvas
+    constructor() {
     }
 
     draw = () => {
-        ctx.fillStyle = this.canvas.color.bounds
+        ctx.fillStyle = this.canvas.color.bound
         ctx.beginPath()
         ctx.fillRect()
     }
 
     update = () => {
-
+        this.draw()
     }
 }
