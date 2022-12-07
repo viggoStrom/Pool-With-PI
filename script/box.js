@@ -2,12 +2,13 @@
 
 
 class box {
-    constructor(name, canvas, xPosition, xVelocity, sideLength) {
+    constructor(name, canvas, xPosition, xVelocity, sideLength, mass) {
         this.name = name
         this.canvas = canvas
         this.xPosition = xPosition
         this.xVelocity = xVelocity
         this.width = sideLength
+        this.mass = mass
     }
 
     draw = () => {
