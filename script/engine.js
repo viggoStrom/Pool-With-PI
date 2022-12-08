@@ -49,7 +49,7 @@ class engine {
     }
 
     update = () => {
-        this.addVelocities()
         this.check()
+        this.addVelocities()
     }
 }

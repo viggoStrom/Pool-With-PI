@@ -13,8 +13,9 @@ class box {
 
     draw = () => {
         ctx.fillStyle = this.canvas.color.box
-        ctx.beginPath()
         ctx.fillRect(this.xPosition, 800 - this.width, this.width, this.width)
+        ctx.strokeStyle = this.canvas.color.gray
+        ctx.strokeRect(this.xPosition, 800 - this.width, this.width, this.width)
     }
 
     update = () => {
