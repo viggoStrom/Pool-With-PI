@@ -1,8 +1,9 @@
 /** @type {HTMLCanvasElement} */
 
 
-class bounds {
-    constructor() {
+class bound {
+    constructor(canvas) {
+        this.canvas = canvas
     }
 
     draw = () => {

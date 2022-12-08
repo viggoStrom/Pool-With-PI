@@ -13,14 +13,19 @@ canvas.color = {
     box: "#95ff91"
 }
 
-const smallBox = new box("Small Box", canvas, 500, 1, 150, 1)
-const bigBox = new box("Big Box", canvas, 1000, 4, 200, 100)
+const wall = new bound(canvas)
+const smallBox = new box("Small Box", canvas, 500, -10, 150, 1)
+const bigBox = new box("Big Box", canvas, 1000, 10, 200, 100)
 const physics = new engine(canvas, {}, smallBox, bigBox)
 
-
-for (let index = 0; index < 1000; index++) {
+// testing loop
+for (let index = 0; index < 8751; index++) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    
+    wall.update()
     smallBox.update()
     bigBox.update()
+    physics.update()
 
     physics.addVelocities()
 }
