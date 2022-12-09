@@ -11,11 +11,10 @@ class engine {
     addVelocities = () => {
         this.objects.forEach(element => {
             element.xPosition -= element.xVelocity / 1000
-            // console.log(element.name, element.xPosition);
         });
     }
 
-    check = () => {
+    checkCollisions = () => {
         // untested
         this.objects.forEach(element => {
             if (element.xPosition < this.bound.xPosition + this.bound.width) {
@@ -32,8 +31,6 @@ class engine {
                     this.objects[i].xPosition + this.objects[i].width > this.objects[j].xPosition) {
                     // The objects are colliding
 
-                    console.log(`Objects ${i} and ${j} are colliding!`);
-
                     const v1 = (this.objects[i].xVelocity * (this.objects[i].mass - this.objects[j].mass) + 2 * this.objects[j].mass * this.objects[j].xVelocity) / (this.objects[i].mass + this.objects[j].mass)
                     const v2 = (this.objects[j].xVelocity * (this.objects[j].mass - this.objects[i].mass) + 2 * this.objects[i].mass * this.objects[i].xVelocity) / (this.objects[i].mass + this.objects[j].mass)
 
@@ -49,7 +46,13 @@ class engine {
     }
 
     update = () => {
-        this.check()
+        this.checkCollisions()
         this.addVelocities()
+    }
+
+    initiate = () => {
+        this.objects.forEach(element => {
+            element.createInputGroup()
+        });
     }
 }

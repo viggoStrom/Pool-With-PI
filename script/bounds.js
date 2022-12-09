@@ -5,13 +5,17 @@ class bound {
     constructor(canvas) {
         this.canvas = canvas
         this.floorHeightDivisor = 5
+        this.xPosition = 0
+        this.width = this.canvas.width / 15
     }
 
     draw = () => {
         ctx.fillStyle = this.canvas.color.wall
-        ctx.fillRect(0, 0, this.canvas.width / 15, this.canvas.height)
+        ctx.fillRect(0, 0, this.width, this.canvas.height)
+        
         ctx.fillStyle = this.canvas.color.floor
         ctx.fillRect(0, this.canvas.height - this.canvas.height / this.floorHeightDivisor, this.canvas.width, this.canvas.height / this.floorHeightDivisor)
+        
         ctx.strokeStyle = this.canvas.color.gray
         ctx.strokeRect(0, this.canvas.height - this.canvas.height / this.floorHeightDivisor, this.canvas.width, this.canvas.height / this.floorHeightDivisor)
     }
