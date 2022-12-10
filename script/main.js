@@ -37,11 +37,11 @@ canvas.perfDisplay = () => {
     const collisions = canvas.nrOfCollisions;
 
     // changes the values of the text under the canvas to reflect current stats
-    canvas.perfDiv.children[0].innerText = `frames: ${frames}`;
-    canvas.perfDiv.children[1].innerText = `fps: ${fps}`;
-    canvas.perfDiv.children[2].innerText = `frametime: ${frametime} ms`;
-    canvas.perfDiv.children[3].innerText = `time: ${time} ms`;
-    canvas.perfDiv.children[4].innerText = `collisions: ${collisions}`;
+    canvas.perfDiv.children[0].innerText = ` frames: ${frames} `;
+    canvas.perfDiv.children[1].innerText = ` fps: ${fps} `;
+    canvas.perfDiv.children[2].innerText = ` frametime: ${frametime} ms `;
+    canvas.perfDiv.children[3].innerText = ` time: ${time} ms `;
+    canvas.perfDiv.children[4].innerText = ` collisions: ${collisions} `;
 
     // these are used to calculate frametimes, total frames ellapsed, and fps
     canvas.frameTime = performance.now();
