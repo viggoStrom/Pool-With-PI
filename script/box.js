@@ -26,8 +26,7 @@ class box {
         ctx.fillText(`${this.xVelocity.toFixed(2)} cm/s`, this.xPosition, this.yPosition - 70 - this.width, this.width * 10)
     }
 
-    createInputGroup = (name) => {
-        this.name = name
+    createInputGroup = () => {
         // create the parent <p> element with class "inputGroup"
         var inputGroup = document.createElement("p");
         inputGroup.className = "inputGroup";
@@ -116,5 +115,6 @@ class box {
     update = () => {
         this.draw()
         this.floatingText()
+        this.getUserInput()
     }
 }

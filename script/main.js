@@ -18,7 +18,7 @@ canvas.color = {
 
 const wallAndFloor = new bound(canvas)
 const smallBox = new box("Small Box", canvas, canvas.width * 10 / 15, 100, 0, 1)
-const bigBox = new box("Big Box    ", canvas, canvas.width * 12 / 15, 200, 100, 1000000)
+const bigBox = new box("Big Box", canvas, canvas.width * 12 / 15, 200, 100, 1000000)
 const physics = new engine(canvas, wallAndFloor, smallBox, bigBox)
 
 const frame = () => {
@@ -44,63 +44,12 @@ const instructions = () => {
 const initiate = () => {
     // simple boolean check wether it's already running or not
     if (canvas.hasTheProgramStarted) {
-        engine.initiate()
 
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
-        window.requestAnimationFrame(frame)
+        physics.initiate()
+
+        for (let index = 0; index < 55; index++) {
+            window.requestAnimationFrame(frame)
+        }
 
         canvas.hasTheProgramStarted = false;
     }

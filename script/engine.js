@@ -45,14 +45,14 @@ class engine {
         }
     }
 
-    update = () => {
-        this.checkCollisions()
-        this.addVelocities()
-    }
-
     initiate = () => {
         this.objects.forEach(element => {
             element.createInputGroup()
         });
+    }
+
+    update = () => {
+        this.checkCollisions()
+        this.addVelocities()
     }
 }
