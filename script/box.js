@@ -83,7 +83,7 @@ class box {
 
         // create the <span> element containing the units for the velocity input
         var velocityUnits = document.createElement("span");
-        velocityUnits.innerHTML = " m/s";
+        velocityUnits.innerHTML = " cm/s";
 
         // append the units <span> element to the velocity <p> element
         velocityLabel.appendChild(velocityUnits);
