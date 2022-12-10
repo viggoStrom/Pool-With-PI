@@ -28,7 +28,7 @@ class box {
     }
 
     createInputGroup = () => {
-        // create the parent <p> element with class "inputGroup"
+        // create the parent <div> element with class "inputGroup"
         var inputGroup = document.createElement("div");
         inputGroup.className = "inputGroup";
 
@@ -113,6 +113,7 @@ class box {
         this.xVelocity = velocity;
     }
 
+    // set the input fields to current mass and velocity
     setUserInput = () => {
         this.massInput.value = this.mass.toFixed(2)
         this.velocityInput.value = this.xVelocity.toFixed(2)

@@ -5,6 +5,8 @@ ctx = canvas.getContext("2d")
 
 ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+
+// declaring som variables
 canvas.perfDiv = document.getElementById("performance");
 canvas.hasTheProgramStarted = true;
 canvas.height = "1000"
@@ -20,6 +22,8 @@ canvas.color = {
     gray: "#252525"
 }
 
+
+// declaring all of my objects
 const wallAndFloor = new bound(canvas)
 const smallBox = new box("Small Box", canvas, canvas.width * 10 / 15, 100, 0, 1)
 const bigBox = new box("Big Box", canvas, canvas.width * 12 / 15, 200, 100, 1000000)
@@ -44,6 +48,7 @@ canvas.perfDisplay = () => {
     canvas.frames++;
 }
 
+// draws instructions in the middle of the canvas
 canvas.instructions = () => {
     ctx.fillStyle = "#363636";
     ctx.fillRect(canvas.width / 20, canvas.height / 2 - 60, canvas.width * 18 / 20, 90);
@@ -52,6 +57,8 @@ canvas.instructions = () => {
     ctx.fillText("Press 'space' or simply click on the screen", canvas.width / 15, canvas.height / 2);
 }
 
+
+// main frame loop
 const frame = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -102,10 +109,7 @@ document.addEventListener('keydown', function (event) {
 
 // render some elements before starting so the user gets feedback that its actually working
 ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-// physics.update()
 wallAndFloor.update()
 smallBox.update()
 bigBox.update()
-
 canvas.instructions()
