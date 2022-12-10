@@ -29,7 +29,7 @@ class box {
 
     createInputGroup = () => {
         // create the parent <p> element with class "inputGroup"
-        var inputGroup = document.createElement("p");
+        var inputGroup = document.createElement("div");
         inputGroup.className = "inputGroup";
 
         // create the <p> element containing the text "Box1"

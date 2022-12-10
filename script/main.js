@@ -67,8 +67,8 @@ const frame = () => {
 
 const dimInputs = () => {
     document.body.style.color = "gray"
-    document.getElementsByClassName("inputFields").forEach(element => {
-        element.style.backgroundColor = "gray"
+    document.querySelectorAll(".inputField").forEach(element => {
+        element.style.color = "gray"
     });
 }
 
@@ -77,8 +77,6 @@ const initiate = () => {
     // simple boolean check wether it's already running or not
     if (canvas.hasTheProgramStarted) {
         canvas.hasTheProgramStarted = false;
-
-        dimInputs()
 
         // needed for performance tracking
         canvas.timeAtStart = performance.now()
@@ -89,6 +87,8 @@ const initiate = () => {
         for (let index = 0; index < canvas.timeFactor; index++) {
             window.requestAnimationFrame(frame)
         }
+
+        dimInputs()
     }
 }
 
