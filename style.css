@@ -69,7 +69,7 @@ canvas {
     padding: 0rem;
     margin: 0rem;
     border-radius: .3rem;
-    width: 4rem;
+    max-width: 10rem;
 
     text-align: center;
     background-color: #252525;

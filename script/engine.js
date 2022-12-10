@@ -47,7 +47,7 @@ class engine {
 
     initiate = () => {
         this.objects.forEach(element => {
-            element.createInputGroup()
+            element.getUserInput()
         });
     }
 

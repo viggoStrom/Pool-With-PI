@@ -10,6 +10,7 @@ class box {
         this.yPosition = 800
         this.width = sideLength
         this.mass = mass
+        this.createInputGroup()
     }
 
     draw = () => {
@@ -112,9 +113,14 @@ class box {
         this.xVelocity = velocity;
     }
 
+    setUserInput = () => {
+        this.massInput.value = this.mass.toFixed(2)
+        this.velocityInput.value = this.xVelocity.toFixed(2)
+    }
+
     update = () => {
+        this.setUserInput()
         this.draw()
         this.floatingText()
-        this.getUserInput()
     }
 }
