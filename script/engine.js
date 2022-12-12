@@ -19,6 +19,7 @@ class engine {
             if (element.xPosition < this.bound.xPosition + this.bound.width) {
                 element.xVelocity *= -1
                 this.canvas.nrOfCollisions++
+                this.audio.play()
             }
         });
 
@@ -37,6 +38,7 @@ class engine {
                     this.objects[j].xVelocity = v2;
 
                     this.canvas.nrOfCollisions++
+                    this.audio.play()
                 }
             }
         }
@@ -46,6 +48,8 @@ class engine {
         this.objects.forEach(element => {
             element.getUserInput()
         });
+
+        this.audio = document.getElementById("audio")
     }
 
     update = () => {
