@@ -1,7 +1,7 @@
 /** @type {HTMLCanvasElement} */
 
 
-class line {
+class quadBezier {
     constructor(x1, y1, x2, y2) {
         this.x1 = x1
         this.y1 = y1
@@ -12,16 +12,13 @@ class line {
     }
 
     linearInterpolation = () => {
-
+        
     }
 
     draw = () => {
-        ctx.lineWidth = 5
-        ctx.strokeStyle = "white"
         ctx.moveTo(this.x1, this.y1)
         ctx.beginPath()
         ctx.lineTo(this.x2, this.y2)
-        ctx.stroke()
     }
 
     update = () => {
