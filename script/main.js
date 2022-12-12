@@ -26,7 +26,7 @@ canvas.color = {
 
 
 // declaring all of my objects
-const line1 = line(300,300,500,500)
+
 
 canvas.perfDisplay = () => {
     const frames = canvas.frames.toFixed(1);
@@ -49,6 +49,7 @@ canvas.perfDisplay = () => {
 const frame = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+
     canvas.perfDisplay()
 
     window.requestAnimationFrame(frame)
@@ -67,7 +68,7 @@ const initiate = () => {
         physics.initiate()
 
         canvas.timeFactor = document.getElementById("timeFactor").value
-
+        
         for (let index = 0; index < canvas.timeFactor; index++) {
             window.requestAnimationFrame(frame)
         }
@@ -84,4 +85,3 @@ document.addEventListener('keydown', function (event) {
 
 // render some elements before starting so the user gets feedback that its actually working
 ctx.clearRect(0, 0, canvas.width, canvas.height)
-line1.draw()
