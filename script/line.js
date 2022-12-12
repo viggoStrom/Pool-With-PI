@@ -15,15 +15,30 @@ class line {
 
     }
 
-    draw = () => {
+    draw = (firstDot, lastDot) => {
         ctx.lineWidth = 5
         ctx.strokeStyle = "white"
-        ctx.moveTo(this.x1, this.y1)
+
+        if (firstDot) {
+            ctx.moveTo(this.x1, this.y1)
+            ctx.beginPath()
+            ctx.arc(this.x1,this.y1,8,0,2*Math.PI)
+            ctx.stroke()
+        }
+        
         ctx.beginPath()
+        ctx.moveTo(this.x1, this.y1)
         ctx.lineTo(this.x2, this.y2)
         ctx.stroke()
-    }
 
+        if (lastDot) {
+            ctx.moveTo(this.x2, this.y2)
+            ctx.beginPath()
+            ctx.arc(this.x2,this.y2,8,0,2*Math.PI)
+            ctx.stroke()
+        }
+    }
+    
     update = () => {
         this.draw()
     }

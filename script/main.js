@@ -26,7 +26,7 @@ canvas.color = {
 
 
 // declaring all of my objects
-const line1 = line(300,300,500,500)
+const line1 = new line(300, 300, 500, 500)
 
 canvas.perfDisplay = () => {
     const frames = canvas.frames.toFixed(1);
@@ -64,8 +64,6 @@ const initiate = () => {
         // needed for performance tracking
         canvas.timeAtStart = performance.now()
 
-        physics.initiate()
-
         canvas.timeFactor = document.getElementById("timeFactor").value
 
         for (let index = 0; index < canvas.timeFactor; index++) {
@@ -84,4 +82,4 @@ document.addEventListener('keydown', function (event) {
 
 // render some elements before starting so the user gets feedback that its actually working
 ctx.clearRect(0, 0, canvas.width, canvas.height)
-line1.draw()
+line1.draw(true, true)
