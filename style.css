@@ -29,7 +29,7 @@ body {
 canvas {
     background-color: #252525;
     height: 42rem;
-    /* having a fixed aspect ratio is usefull for keeping the canvas pixels in line */
+    /* having a fixed aspect ratio is useful for keeping the canvas pixels in line */
     /* as long as i know the aspect ratio i can define my canvas' height and width so that they arent stretched */
     aspect-ratio: 1.5/1;
 }
