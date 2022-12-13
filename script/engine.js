@@ -74,14 +74,16 @@ class engine {
     // this method gets called when starting the simulation
     initiate = () => {
 
-        // for every element it gets the data from the input boxes for that element 
+        // for every element (box) it gets the data from the input boxes for that element and updates the mass and velocity of that element (box) 
         this.objects.forEach(element => {
             element.getUserInput()
         });
 
+        // this is to more easily access the html audio tag by making it a property of this
         this.audio = document.getElementById("audio")
     }
 
+    // collects all of the other methods so its easier to call them all
     update = () => {
         this.checkCollisions()
         this.addVelocities()

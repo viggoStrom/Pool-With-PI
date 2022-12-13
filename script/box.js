@@ -35,6 +35,7 @@ class box {
 
     // creates the html DOM elements that you interact with
     createInputGroup = () => {
+        
         // create the parent <div> element with class "inputGroup"
         var inputGroup = document.createElement("div");
         inputGroup.className = "inputGroup";
@@ -108,7 +109,9 @@ class box {
 
     }
 
+    // goes and gets the values of the mass and velocity input fields and updates this box's mass and velocity accordingly
     getUserInput = () => {
+
         // get the value of the mass input field
         const mass = parseFloat(document.getElementById(this.name + "Mass").value);
 
@@ -120,7 +123,7 @@ class box {
         this.xVelocity = velocity;
     }
 
-    // set the input fields to current mass and velocity
+    // set the input fields to current mass and velocity so you can read those stats from the side panel instead of above the boxes themselves, especially useful when theyre of screen
     setUserInput = () => {
         this.massInput.value = this.mass.toFixed(2)
         this.velocityInput.value = this.xVelocity.toFixed(2)

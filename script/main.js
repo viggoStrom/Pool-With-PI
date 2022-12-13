@@ -7,8 +7,9 @@ ctx = canvas.getContext("2d")
 // clears the canvas so theres is no wierd remains of stuff that shouldent be there. its probably uneccesary but its a nice comfort
 ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+
 // declaring som variables
-canvas.hasTheProgramStarted = true; // control variable that is used in initiate()
+canvas.hasTheProgramStarted = false; // control variable that is used in initiate()
 canvas.timeFactor = 55
 
 canvas.height = "1000"
@@ -57,6 +58,7 @@ canvas.perfDisplay = () => {
 
 // draws instructions in the middle of the canvas
 canvas.instructions = () => {
+
     ctx.fillStyle = "#363636";
     ctx.fillRect(canvas.width / 20, canvas.height / 2 - 60, canvas.width * 18 / 20, 90);
     ctx.font = "50px roboto mono";
@@ -67,20 +69,30 @@ canvas.instructions = () => {
 
 // main frame loop
 const frame = () => {
+
+    // clears the canvas every frame so that new content isnt just on top of old stuff
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+    // calling every update method (i should probably move the box updates to the engine class since it already has an array of them all)
     physics.update()
     wallAndFloor.update()
     smallBox.update()
     bigBox.update()
 
+    // updates the performance/stats values of the <p> in the index file
     canvas.perfDisplay()
 
+    // i use requestAnimationFrame since it optimises stuff in the background otherwise you would use setInterval() but its less efficient and inaccurate
     window.requestAnimationFrame(frame)
 }
 
+// after starting i want the controls to appear dim to clearify that theyre not accessible
 const dimInputs = () => {
+
+    // dims all text
     document.body.style.color = "gray"
+
+    // dims all of the input fields (they didn't want to inherit the body's style)
     document.querySelectorAll(".inputField").forEach(element => {
         element.style.color = "gray"
     });
@@ -88,26 +100,36 @@ const dimInputs = () => {
 
 // starts the game and makes sure it's not already running
 const initiate = () => {
-    // simple boolean check wether it's already running or not
-    if (canvas.hasTheProgramStarted) {
-        canvas.hasTheProgramStarted = false;
+
+    // simple boolean check wether it's running or not
+    if (!canvas.hasTheProgramStarted) {
+
+        // inverts the value of the boolean so it wont start again
+        canvas.hasTheProgramStarted = true;
 
         // needed for performance tracking
         canvas.timeAtStart = performance.now()
 
+        // it calls some other funtions that are needed for some other code i.e. the input fields on the left 
         physics.initiate()
 
+        // this timefactor thing is really just how many times its gonna ask the browser to make a frame
+        // and this gets that number
         canvas.timeFactor = document.getElementById("timeFactor").value
+
+        // and this uses that number to request that many frames
         for (let index = 0; index < canvas.timeFactor; index++) {
             window.requestAnimationFrame(frame)
         }
 
+        // let's hide dem' inputs yo!
         dimInputs()
     }
 }
 
 // if space is pressed, initiate is called
 document.addEventListener('keydown', function (event) {
+
     // i choose to ignore this warning
     if (event.keyCode === 32) {
         initiate();
