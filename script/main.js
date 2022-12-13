@@ -1,20 +1,25 @@
 /** @type {HTMLCanvasElement} */
 
+// this is boilerplate code that defines "canvas" and makes the canvas render things in 2d  
 const canvas = document.getElementById("canvas")
 ctx = canvas.getContext("2d")
 
+// clears the canvas so theres is no wierd remains of stuff that shouldent be there. its probably uneccesary but its a nice comfort
 ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-
 // declaring som variables
-canvas.perfDiv = document.getElementById("performance");
-canvas.hasTheProgramStarted = true;
+canvas.hasTheProgramStarted = true; // control variable that is used in initiate()
+canvas.timeFactor = 55
+
 canvas.height = "1000"
 canvas.width = canvas.height * 1.5
+
+// debug/stat things
+canvas.perfDiv = document.getElementById("performance");
 canvas.nrOfCollisions = 0
 canvas.frames = 0
 canvas.frameTime = 0
-canvas.timeFactor = 55
+
 canvas.color = {
     wall: "#999696",
     floor: "#a1a1a1",
@@ -29,6 +34,8 @@ const smallBox = new box("Small Box", canvas, canvas.width * 10 / 15, 100, 0, 1)
 const bigBox = new box("Big Box", canvas, canvas.width * 12 / 15, 200, 100, 1000000)
 const physics = new engine(canvas, wallAndFloor, smallBox, bigBox)
 
+
+// this method displays the diffrent performance and stat
 canvas.perfDisplay = () => {
     const frames = canvas.frames.toFixed(1);
     const fps = (canvas.frames / (performance.now() - canvas.timeAtStart) * 1000).toFixed(2);

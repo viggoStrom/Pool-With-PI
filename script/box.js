@@ -5,14 +5,19 @@ class box {
     constructor(name, canvas, xPosition, sideLength, xVelocity, mass) {
         this.name = name
         this.canvas = canvas
+
         this.xPosition = xPosition
-        this.xVelocity = xVelocity
         this.yPosition = 800
-        this.width = sideLength
+
+        this.xVelocity = xVelocity
         this.mass = mass
+
+        this.width = sideLength
+
         this.createInputGroup()
     }
 
+    //  draws the box itself
     draw = () => {
         ctx.fillStyle = this.canvas.color.box
         ctx.fillRect(this.xPosition, this.yPosition - this.width, this.width, this.width)
@@ -20,6 +25,7 @@ class box {
         ctx.strokeRect(this.xPosition, this.yPosition - this.width, this.width, this.width)
     }
 
+    // draws the text that showes mass and velocity
     floatingText = () => {
         ctx.fillStyle = "white"
         ctx.font = "30px roboto mono"
@@ -27,6 +33,7 @@ class box {
         ctx.fillText(`${this.xVelocity.toFixed(2)} cm/s`, this.xPosition, this.yPosition - 70 - this.width, this.width * 10)
     }
 
+    // creates the html DOM elements that you interact with
     createInputGroup = () => {
         // create the parent <div> element with class "inputGroup"
         var inputGroup = document.createElement("div");
@@ -119,6 +126,7 @@ class box {
         this.velocityInput.value = this.xVelocity.toFixed(2)
     }
 
+    // this method collects all of the other methods that have to be called
     update = () => {
         this.setUserInput()
         this.draw()

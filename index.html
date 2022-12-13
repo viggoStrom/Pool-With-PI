@@ -15,16 +15,23 @@
 
 <body>
     <!-- i use wrappers for flex alignment so thats why they're there -->
+
+    <!-- this audio tag sits idle until the js files call apon it to 'chime' -->
     <audio src="src/bounceSound.mp3" id="audio"></audio>
     
     <div id="canvasWrapper">
+
         <div id="userInputWrapper">
+
             <div class="inputGroup">
-                <p>Time Factor</p>
-                <input id="timeFactor" class="inputField" type="text" value="55"
-                    title="Determine how many parrallell frame requests are done">
+
+                <p>Time Scale</p>
+
+                <input id="timeFactor" class="inputField" type="text" value="55" title="Determine how many parrallell frame requests are done">
+            
             </div>
         </div>
+
         <!-- this onclick simply starts the main loop of the simulation -->
         <canvas id="canvas" onclick="initiate()"></canvas>
     </div>
@@ -32,7 +39,7 @@
     <div id="performanceWrapper">
         <div id="performance">
             <p class="performance" id="frames"></p>
-            <p class="performance" id="fps" title="May not actually be reliable since JS 'requestAnimationFrame()' does som optimisation stuff behind the scenes">
+            <p class="performance" id="fps" title="not actual fps!! simply how many times the program asks the browser for another frame">
             </p>
             <p class="performance" id="frametime"></p>
             <p class="performance" id="time"></p>
